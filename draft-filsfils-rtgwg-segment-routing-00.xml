@@ -272,7 +272,7 @@
   <middle>
     <section title="Introduction">
       <t>In this section, we illustrate the key properties of the SR
-      Architecture and introduce the companion documents. </t>
+      Architecture and introduce the companion documents.</t>
 
       <section title="Illustration">
         <t>In the context of <xref target="SRPROPS"/> where all the links have
@@ -292,11 +292,11 @@
             the egress edge router.</t>
 
             <t>Per-flow State for packet P must only be created at the ingress
-            edge router. </t>
+            edge router.</t>
 
-            <t> The operator must be able to forbid, for security reasons,
+            <t>The operator must be able to forbid, for security reasons,
             anyone outside the operator domain to exploit its intra-domain SR
-            capabilities. </t>
+            capabilities.</t>
           </list></t>
 
         <figure align="center" anchor="SRPROPS"
@@ -331,14 +331,14 @@
         <t>A segment is a 32-bit identification either for a topological
         instruction or a service instruction. An instruction is either
         relevant to a single node or shared across all the SR-capable nodes of
-        the domain. </t>
+        the domain.</t>
 
         <t>Let us assume some ISIS/OSPF extensions to define a "Node Segment"
         as a shared instruction within the IGP domain to forward a packet
         along the shortest path to the specified node. Let us further assume
         that within the SR domain illustrated in Figure 1, the notations SI,
         SD, SB, SE and SF respectively identify IGP node segments to I, D, B,
-        E and F. </t>
+        E and F.</t>
 
         <t>Let us assume that node B identifies its local service S with local
         segment SS.</t>
@@ -348,7 +348,7 @@
 
         <t>The packet P reaches the ingress SR edge router. Node I pushes the
         SR header illustrated in Figure 2 and sets the pointer to the first
-        segment of the list (SD, the Node Segment to D). </t>
+        segment of the list (SD, the Node Segment to D).</t>
 
         <t>SD is an instruction recognized by all the nodes in the SR domain
         which causes the packet to be forwarded along the shortest path to
@@ -358,7 +358,7 @@
         executed (SB).</t>
 
         <t>SB is an instruction shared by all the nodes in the SR domain which
-        causes the packet to be forwarded along the shortest path to B. </t>
+        causes the packet to be forwarded along the shortest path to B.</t>
 
         <t>Once at B, the pointer is incremented and the next segment is
         executed (SS).</t>
@@ -373,7 +373,7 @@
         executed (SE).</t>
 
         <t>SE is an instruction shared by all the nodes in the SR domain which
-        causes the packet to be forwarded along the shortest path to E. </t>
+        causes the packet to be forwarded along the shortest path to E.</t>
 
         <t>E then removes the SR header and the packet continues its journey
         outside the SR domain.</t>
@@ -422,7 +422,7 @@
         Typically, an intermediate node would maintain in the order of 100's
         to 1000's of shared Node segments and in the order of 10's to 100 of
         local segments. Typically the SR IGP forwarding table is expected to
-        be much less than 10000 entries. </t>
+        be much less than 10000 entries.</t>
 
         <t>Fifth, the SR header is inserted at the entrance to the domain and
         removed at the exit of the operator domain. For security reasons, the
@@ -504,7 +504,7 @@
           <c>An IGP-Adjacency Segment is an IGP segment attached to an
           unidirectional adjacency or a set of unidirectional adjacencies. An
           IGP-Adjacency Segment is local to the node which advertises it. Its
-          SID is absoluted and not indexed. </c>
+          SID is absoluted and not indexed.</c>
 
           <c>SRDB</c>
 
@@ -550,7 +550,7 @@
         target="I-D.gredler-rtgwg-igp-label-advertisement"/>.</t>
 
         <t>The SR instantiation in the IPv6 dataplane is described in
-        (documents will be released in the future). </t>
+        (documents will be released in the future).</t>
 
         <t>IS-IS protocol extensions for Segment Routing are described in
         <xref target="draft-previdi-isis-segment-routing-extensions-00"/>.</t>
@@ -574,7 +574,7 @@
         instruction is inherited from MPLS (<xref target="RFC3031"/>).</t>
 
         <t>Deployment experience has shown the need to limit the number of
-        per-flow states maintained in the network. </t>
+        per-flow states maintained in the network.</t>
 
         <t>The main differences from the IPv6 source route model are:<list
             style="hanging">
@@ -584,7 +584,7 @@
             <t>A segment can represent any instruction either a service or a
             topological path. Topologically, the path to an IP address is
             often limited to the shortest-path to that address. A segment can
-            represent any path. </t>
+            represent any path.</t>
 
             <t>The ingress and egress egde routers are identified and always
             available, allowing for interesting accounting and policy
@@ -613,7 +613,7 @@
         and full segment list containing the full history of the path from
         ingress to egress edge routers is thus lost in the MPLS instantiation
         of SR. However all the other SR properties are preserved and
-        especially the MPLS dataplane can be reused without any change. </t>
+        especially the MPLS dataplane can be reused without any change.</t>
       </section>
     </section>
 
@@ -675,7 +675,7 @@
       <t>Within an SR domain, each SR-capable nodes is configured with its
       Segment Routing Shared Block (SRSB). The SRSB is a subset of the 32-bit
       SID space. SRSB can be a non-contiguous set of segments. Base(SRSB)
-      identifies the first segment in SRSB. </t>
+      identifies the first segment in SRSB.</t>
 
       <t>A shared segment must be associated to a unique index within the
       SRSB.</t>
@@ -687,7 +687,7 @@
       the same indexed segment I(1). Specifically, node B associates this
       shared instruction with local segment value 1001, the first value in its
       local SRSB. Node B associates this shared instruction with local segment
-      value 2001, the first value in its local SRSB. </t>
+      value 2001, the first value in its local SRSB.</t>
 
       <t>A shared segment is usually represented as I(k) where I(.) identifies
       that the related segment is found through indexation in the SRSB and k
@@ -704,7 +704,7 @@
 
         <t>In the SR architecture, this per-flow state only exists at the
         ingress edge router where the policy is defined and the SR header is
-        pushed. </t>
+        pushed.</t>
 
         <t>It is outside the scope of the document to define the process that
         leads to the instantiation at a node N of an SR Traffic Engineering
@@ -757,7 +757,7 @@
 
         <t>Each SR-capable node maintains its local SRDB. SRDB entries can
         either derive from local policy or from protocol segment
-        advertisement. </t>
+        advertisement.</t>
       </section>
     </section>
 
@@ -836,12 +836,12 @@ R1-----R2----------R3-----R8
 
         <section anchor="EXAMPLE1" title="Example 1">
           <t>R1 may send a packet P1 to R8 simply by pushing an SR header with
-          segment list {I(1)}. </t>
+          segment list {I(1)}.</t>
 
           <t>I(1) is thel indexed IGP segment attached to the IP prefix
           192.0.2.8/32. Its semantic is global within the IGP domain: any
           router forwards a packet received with this segment to the next-hop
-          along the ECMP-aware shortest-path to the related prefix. </t>
+          along the ECMP-aware shortest-path to the related prefix.</t>
 
           <t>At each hop along the shortest-path, the local segment value may
           change. In our example, the shared indexed segment I(1) is
@@ -860,12 +860,12 @@ R1-----R2----------R3-----R8
 
         <section anchor="EXAMPLE2" title="Example 2">
           <t>R1 may send a packet P2 to R8 by pushing an SR header with
-          segment list {I(2), 9001, I(8)}. </t>
+          segment list {I(2), 9001, I(8)}.</t>
 
           <t>I(2) is a shared IGP segment attached to the IP prefix
           192.0.2.2/32. Its semantic is global within the IGP domain: any
           router forwards a packet received with active segment I(2) to the
-          next-hop along the shortest-path to the related prefix. </t>
+          next-hop along the shortest-path to the related prefix.</t>
 
           <t>9001 is a local IGP segment attached by node R2 to its north link
           to R3. Its semantic is local to node R2: R2 switches a packet
@@ -877,7 +877,7 @@ R1-----R2----------R3-----R8
 
         <section anchor="EXAMPLE3" title="Example 3">
           <t>R1 may send a packet P3 along the same exact path as P1 using a
-          different segment list {I(2), 9003, I(8)}. </t>
+          different segment list {I(2), 9003, I(8)}.</t>
 
           <t>9003 is a local IGP segment attached by node R2 to both its north
           and south links to R3. Its semantic is local to node R2: R2 switches
@@ -890,12 +890,12 @@ R1-----R2----------R3-----R8
 
         <section anchor="EXAMPLE4" title="Example 4">
           <t>R1 may send a packet P4 to R8 while avoiding the links between R2
-          and R3 by pushing an SR header with segment list {I(4), I(8)}. </t>
+          and R3 by pushing an SR header with segment list {I(4), I(8)}.</t>
 
           <t>I(4) is a shared IGP segment attached to the IP prefix
           192.0.2.4/32. Its semantic is global within the IGP domain: any
           router forwards a packet received with active segment 1004 to the
-          next-hop along the shortest-path to the related prefix. </t>
+          next-hop along the shortest-path to the related prefix.</t>
 
           <t>In conclusion, the path followed by P4 is R1-R2-R4-R3-R8.</t>
         </section>
@@ -904,12 +904,12 @@ R1-----R2----------R3-----R8
           <t>R1 may send a packet P5 to R8 while avoiding the links between R2
           and R3 while still benefitting from all the remaining shortest paths
           (via R4 and R5) by pushing an SR header with segment list {I(1009),
-          I(8)}. </t>
+          I(8)}.</t>
 
           <t>I(1009) is a shared IGP segment attached to the anycast IP prefix
           198.51.100.9/32. Its semantic is global within the IGP domain: any
           router forwards a packet received with active segment I(1009) to the
-          next-hop along the shortest-path to the related prefix. </t>
+          next-hop along the shortest-path to the related prefix.</t>
 
           <t>In conclusion, the path followed by P5 is either R1-R2-R4-R3-R8
           or R1-R2-R5-R3-R8 .</t>
@@ -920,7 +920,7 @@ R1-----R2----------R3-----R8
         <section anchor="IGPSID" title="IGP Segment, IGP SID">
           <t>The terms "IGP Segment" and "IGP SID" are the generic names for a
           segment attached to a piece of information advertised by a
-          link-state IGP, e.g. an IGP prefix or an IGP adjacency. </t>
+          link-state IGP, e.g. an IGP prefix or an IGP adjacency.</t>
 
           <figure align="center" anchor="IGPTERMFIG"
                   title="IGP SID Terminology">
@@ -942,7 +942,7 @@ Node-SID        Anycast-SID
 
           <t>In <xref target="IGPSEGMENTSFIG"/> and <xref
           target="SEGMENTALLOCFIG"/>, SIDs I(1), I(2), I(3), I(4), I(8),
-          I(1009), 9001, 9002 and 9003 are called IGP SIDs. </t>
+          I(1009), 9001, 9002 and 9003 are called IGP SIDs.</t>
         </section>
 
         <section anchor="PREFIXSID" title="IGP-Prefix Segment, Prefix-SID">
@@ -951,7 +951,7 @@ Node-SID        Anycast-SID
           nodes of the IGP domain. It is always represented as an indexed
           segment. It identifies the ECMP-aware shortest-path computed by the
           IGP to the related prefix. The Prefix-SID is the SID of the
-          IGP-Prefix Segment. </t>
+          IGP-Prefix Segment.</t>
 
           <t>A packet injected anywhere within the SR/IGP domain with an
           active Prefix-SID will be forwarded along the shortest-path to that
@@ -967,7 +967,7 @@ Node-SID        Anycast-SID
 
           <t>In <xref target="IGPSEGMENTSFIG"/> and <xref
           target="SEGMENTALLOCFIG"/>, SIDs I(1), I(2), I(3), I(4), I(8),
-          I(1009) are called Prefix-SIDs. </t>
+          I(1009) are called Prefix-SIDs.</t>
         </section>
 
         <section anchor="NODESID" title="IGP-Node Segment, Node-SID">
@@ -984,7 +984,7 @@ Node-SID        Anycast-SID
 
           <t>In <xref target="IGPSEGMENTSFIG"/> and <xref
           target="SEGMENTALLOCFIG"/>, SIDs I(1), I(2), I(3), I(4) and I(8) are
-          called Node-SIDs. </t>
+          called Node-SIDs.</t>
         </section>
 
         <section anchor="ANYSID" title="IGP-Anycast Segment, Anycast SID">
@@ -1008,11 +1008,11 @@ Node-SID        Anycast-SID
           unidirectional adjacency or a set of unidirectional adjacencies. An
           IGP-Adjacency Segment is local to the node which advertises it. It
           is expressed as an absolute (non-indexed) segment value. The SID of
-          the IGP-Adjacency Segment is called the Adj-SID. </t>
+          the IGP-Adjacency Segment is called the Adj-SID.</t>
 
           <t>The adjacency is formed by the local node (i.e.: the node
           advertising the adjacency in the IGP) and the remote node (i.e.: the
-          other end of the adjacency). </t>
+          other end of the adjacency).</t>
 
           <t>A packet injected anywhere within the SR/IGP domain with a
           segment list {I(N), SNL}, where I(N) is the Node-SID of node N and
@@ -1022,7 +1022,7 @@ Node-SID        Anycast-SID
           any IP shortest-path consideration, towards link L (instruction
           associated with Adj-SID SNL). If the Adj-Sid identifies a set of
           adjacencies, then the node N load- balances the traffic along the
-          various members of the set. </t>
+          various members of the set.</t>
 
           <t>In <xref target="IGPSEGMENTSFIG"/> and <xref
           target="SEGMENTALLOCFIG"/>, SIDs 9001, 9002 and 9003 are called
@@ -1063,20 +1063,20 @@ Node-SID        Anycast-SID
           <t>Multiple Prefix-SID's may be allocated to the same IGP Prefix
           (e.g. for class of service purpose). Typically a single Prefix-SID
           is allocated to an IGP Prefix. A Prefix-SID is always represented as
-          an index in the SRSB. </t>
+          an index in the SRSB.</t>
 
           <t>An index is allocated from the SRSB according to a similar
           process to IP address allocation. Typically the index is allocated
           by policy by the operator (or NMS) and the index very rarely
-          changes. </t>
+          changes.</t>
 
           <t>The allocation process MUST NOT allocate the same index to
-          different IP prefixes. </t>
+          different IP prefixes.</t>
 
           <t>If a node learns a Prefix-SID having an index value that falls
           outside the locally configured SRSB range, then the node MUST NOT
           use the Prefix- SID and SHOULD issue an error log warning for
-          misconfiguration. </t>
+          misconfiguration.</t>
 
           <t>The required IGP protocol extensions are defined in <xref
           target="draft-previdi-isis-segment-routing-extensions-00"/> and
@@ -1344,7 +1344,7 @@ S---A/        |          |     |
 
       <reference anchor="draft-francois-rtgwg-segment-routing-frr-00">
         <front>
-          <title>FRR with Segment Routing </title>
+          <title>FRR with Segment Routing</title>
 
           <author fullname="Clarence Filsfils" initials="C."
                   surname="Filsfils"/>
