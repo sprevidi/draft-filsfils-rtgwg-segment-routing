@@ -465,13 +465,13 @@
           <c>Indexed Segment</c>
 
           <c>The related instruction is supported by all the SR-capable nodes
-          in the local domain. The SID is represented as an index in the
-          SRSB</c>
+          in the domain. The SID is represented as an index in the SRSB</c>
 
           <c>SRSB</c>
 
           <c>SR Shared Block: the set of segments supporting the indexed
-          segments. Different nodes can have different SRSB</c>
+          segments. Different nodes can have different SRSB. The SRSB of a
+          node must be known by all the SR nodes in the domain</c>
 
           <c>IGP Segment or IGP SID</c>
 
@@ -481,30 +481,30 @@
 
           <c>IGP-Prefix Segment or Prefix-SID</c>
 
-          <c>An IGP-Prefix Segment is an IGP segment attached to an IGP
-          prefix. It identifies the ECMP-aware shortest-path computed by the
-          IGP to the related prefix, as such it is shared by all the nodes in
-          the IGP domain and its SID is always indexed. The Prefix-SID is the
-          SID of the IGP-Prefix Segment</c>
+          <c>An IGP segment attached to an IGP prefix. It identifies the
+          ECMP-aware shortest-path computed by the IGP to the related prefix,
+          as such it is shared by all the nodes in the IGP domain and its SID
+          is always indexed. The Prefix-SID is the SID of the IGP-Prefix
+          Segment </c>
 
           <c>IGP-Node Segment or Node Segment or Node-SID</c>
 
-          <c>An IGP-Node Segment is a an IGP-Prefix Segment which identifies a
-          specific router (e.g. a loopback). The terms "Node Segment" or
-          Node-SID" are often used as an abbreviation</c>
+          <c>An IGP-Prefix Segment which identifies a specific router (e.g. a
+          loopback). The terms "Node Segment" or Node-SID" are often used as
+          an abbreviation</c>
 
           <c>IGP-Anycast Segment or Anycast Segment or Anycast-SID</c>
 
-          <c>An IGP-Anycast Segment is an IGP-prefix segment which does not
-          identify a specific router, but a set of routers. The terms "Anycast
-          Segment" or "Anycast-SID" are often used as an abbreviation</c>
+          <c>An IGP-prefix segment which does not identify a specific router,
+          but a set of routers. The terms "Anycast Segment" or "Anycast-SID"
+          are often used as an abbreviation</c>
 
           <c>IGP-Adjacency Segment or Adjacency Segment or Adj-SID</c>
 
-          <c>An IGP-Adjacency Segment is an IGP segment attached to an
-          unidirectional adjacency or a set of unidirectional adjacencies. An
-          IGP-Adjacency Segment is local to the node which advertises it. Its
-          SID is absoluted and not indexed.</c>
+          <c>An IGP segment attached to an unidirectional adjacency or a set
+          of unidirectional adjacencies. An IGP-Adjacency Segment is local to
+          the node which advertises it. Its SID is absoluted and not
+          indexed.</c>
 
           <c>SRDB</c>
 
@@ -675,7 +675,8 @@
       <t>Within an SR domain, each SR-capable nodes is configured with its
       Segment Routing Shared Block (SRSB). The SRSB is a subset of the 32-bit
       SID space. SRSB can be a non-contiguous set of segments. Base(SRSB)
-      identifies the first segment in SRSB.</t>
+      identifies the first segment in SRSB. The SRSB of a node must be known
+      by all the SR nodes in the domain.</t>
 
       <t>A shared segment must be associated to a unique index within the
       SRSB.</t>
@@ -843,14 +844,14 @@ R1-----R2----------R3-----R8
           router forwards a packet received with this segment to the next-hop
           along the ECMP-aware shortest-path to the related prefix.</t>
 
-          <t>At each hop along the shortest-path, the local segment value may
-          change. In our example, the shared indexed segment I(1) is
-          represented by segment 1001 at R1, R2 and R3 (their SRSB is [1000,
-          3000]) while I(1) is represented by segment 4001 at R1, R2 and R3
-          (their SRSB is [4000, 7000]). The following key property is
+          <t>At each hop along the shortest-path, the local representation of
+          a segment may change. In our example, the shared indexed segment
+          I(1) is represented by segment 1001 at R1, R2 and R3 (their SRSB is
+          [1000, 3000]) while I(1) is represented by segment 4001 at R1, R2
+          and R3 (their SRSB is [4000, 7000]). The following key property is
           preserved: any SR-capable IGP node is able to infer the local
-          segment value attached by any node for a given indexed IGP
-          segment.</t>
+          segment value attached by any node for a given indexed IGP segment
+          because any SR node advertises its SRSB in the IGP.</t>
 
           <t>In conclusion, the path followed by P1 is R1-R2--R3-R8. The
           ECMP-awareness ensures that the traffic be load-shared between any
@@ -1029,7 +1030,7 @@ Node-SID        Anycast-SID
           Adj-SIDs.</t>
         </section>
 
-        <section anchor="FINALLY" title="Finally">
+        <section anchor="SUMMARY" title="Summary">
           <t>Figure 8 summarizes the different terms that can be used to refer
           to the SID&rsquo;s used in the example illustrated by <xref
           target="IGPSEGMENTSFIG"/> and <xref target="SEGMENTALLOCFIG"/>.
@@ -1253,11 +1254,6 @@ S---A/        |          |     |
 
       <t>SR/OAM use-cases are described in <xref
       target="draft-filsfils-rtgwg-segment-routing-use-cases-00"/>.</t>
-    </section>
-
-    <section anchor="MULTICAST" title="Multicast">
-      <t>The primary objective of the SR architecture is for unicast
-      traffic.</t>
     </section>
 
     <section anchor="IANA" title="IANA Considerations">
